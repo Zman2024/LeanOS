@@ -1,6 +1,10 @@
 #include <Kernel.h>
 
-extern "C" void KernelMain()
+namespace Kernel
 {
-	while (1) ;
+	extern "C" void KernelMain(BootInfo bootInfo)
+	{
+		InitializeKernel(bootInfo);
+		while (1) ;
+	}
 }
