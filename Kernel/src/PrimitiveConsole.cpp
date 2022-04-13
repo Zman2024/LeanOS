@@ -1,5 +1,5 @@
 #include <PrimitiveConsole.h>
-#include <Externs.h>
+#include <Memory.h>
 
 PrimitiveConsole::PrimitiveConsole(FrameBuffer* frameBuffer, Font* font)
 {

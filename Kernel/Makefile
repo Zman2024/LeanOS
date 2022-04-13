@@ -22,9 +22,9 @@ QEMUFLAGS += -drive if=pflash,format=raw,unit=0,file=$(OVMFDIR)/OVMF_CODE-pure-e
 QEMUFLAGS += -drive if=pflash,format=raw,unit=1,file=$(OVMFDIR)/OVMF_VARS-pure-efi.fd
 QEMUFLAGS += -net none -vga virtio -smp 4 -soundhw pcspk 
 
-CXXFLAGS = -g -ffreestanding -fshort-wchar -pipe -mno-red-zone -O0 -fno-exceptions -fno-rtti -masm=intel -fpermissive -w -I$(INCLUDEDIR) -c 
+CXXFLAGS = -g -ffreestanding -fshort-wchar -pipe -mno-red-zone -O0 -fno-exceptions -fno-rtti -masm=intel -I$(INCLUDEDIR) -c 
 ASMFLAGS = -g -f elf64 
-LDFLAGS = -T $(LDS) -static -Bsymbolic -nostdlib
+LDFLAGS = -T $(LDS) -static -Bsymbolic -nostdlib 
 
 BOOTEFI := $(GNUEFI)/x86_64/bootloader/main.efi
 
@@ -60,7 +60,7 @@ link:
 
 clean:
 	@ echo ==================== Cleaning Kernel ====================
-	@ rm -rf $(OBJDIR)/*.*
+	@ rm -rf $(OBJDIR)/*
 	@ rm -rf $(BUILDDIR)/*.*
 	@ rm -rf $(BUILDDIR)/dsk/*.*
 	@ rm -rf $(BUILDDIR)/dsk/efi/*.*

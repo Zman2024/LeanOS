@@ -5,11 +5,28 @@
 #include <Structs.h>
 #include <PrimitiveConsole.h>
 #include <Globals.h>
-#include <Externs.h>
+#include <Memory.h>
 
 namespace Kernel
 {
+	// Calls the other initialize functions
 	void InitializeKernel(const BootInfo& bootInfo);
+
+	// Initializes the global descriptor table for interrupts
+	void InitializeGDT();
+
+	// Initializes interrupts (duh)
+	void InitializeExceptions();
+
+	// Initializes Paging and Memory Mapping
+	void InitializePaging(const BootInfo& bootInfo);
+
+	// Init ACPI
+	void InitializeACPI(const BootInfo& bootInfo);
+
+	// Use PIC / APIC
+	void InitializeIRQ(bool forceUsePic = false);
+
 }
 
 #endif
