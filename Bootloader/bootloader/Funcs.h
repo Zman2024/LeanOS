@@ -3,7 +3,7 @@
 #include <efi.h>
 #include <efilib.h>
 #include <elf.h>
-#include "Structs.h"
+#include "BasicStructs.h"
 
 UINTN strcmp(CHAR8* str1, CHAR8* str2, UINTN length)
 {
