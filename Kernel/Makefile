@@ -62,6 +62,9 @@ clean:
 	@ echo ==================== Cleaning Kernel ====================
 	@ rm -rf $(OBJDIR)/*.*
 	@ rm -rf $(BUILDDIR)/*.*
+	@ rm -rf $(BUILDDIR)/dsk/*.*
+	@ rm -rf $(BUILDDIR)/dsk/efi/*.*
+	@ rm -rf $(BUILDDIR)/dsk/efi/boot/*.*
 	@ echo ==================== Done ====================
 
 
