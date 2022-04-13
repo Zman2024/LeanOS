@@ -6,6 +6,7 @@
 #include <PrimitiveConsole.h>
 #include <Globals.h>
 #include <Memory.h>
+#include <String.h>
 
 namespace Kernel
 {

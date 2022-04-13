@@ -12,7 +12,7 @@
 struct PrimitiveConsole
 {
 	// Contructs the PrimitiveConsole using a PSF1 Font and a GOP Framebuffer
-	PrimitiveConsole(FrameBuffer* frameBuffer, Font* font);
+	PrimitiveConsole(FrameBuffer* frameBuffer, PSF1Font* font);
 
 	// Puts a character at the exact character position specified
 	// using a foreground and background color. Does not modify
@@ -77,12 +77,14 @@ struct PrimitiveConsole
 	forceinline Color32 GetForegroundColor() { return mForegroundColor; }
 	forceinline Color32 GetBackgroundColor() { return mBackgroundColor; }
 
+	forceinline int64 GetWidth() { return mWidth; }
+	forceinline int64 GetHeight() { return mHeight; }
 
 private:
 
 	// Private Members //
 
-	Font* mFont;
+	PSF1Font* mFont;
 	FrameBuffer* mFramebuffer;
 	sPoint mCursorPosition;
 

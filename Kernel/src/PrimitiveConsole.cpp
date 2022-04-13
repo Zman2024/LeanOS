@@ -1,7 +1,7 @@
 #include <PrimitiveConsole.h>
 #include <Memory.h>
 
-PrimitiveConsole::PrimitiveConsole(FrameBuffer* frameBuffer, Font* font)
+PrimitiveConsole::PrimitiveConsole(FrameBuffer* frameBuffer, PSF1Font* font)
 {
     this->mFont = font;
     this->mFramebuffer = frameBuffer;
@@ -11,7 +11,7 @@ PrimitiveConsole::PrimitiveConsole(FrameBuffer* frameBuffer, Font* font)
     this->mForegroundColor = Color::Lean;
 
     this->mHeight = frameBuffer->Height / font->Header->charsize;
-    this->mWidth = frameBuffer->Width / font->Header->charsize >> 1;
+    this->mWidth = frameBuffer->Width / (font->Header->charsize >> 1);
 
 }
 

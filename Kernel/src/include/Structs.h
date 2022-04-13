@@ -14,7 +14,7 @@ struct FontHeader
 	byte charsize;
 };
 
-struct Font
+struct PSF1Font
 {
 	FontHeader* Header;
 	vptr GlyphBuffer;
@@ -32,7 +32,7 @@ struct FrameBuffer
 struct BootInfo
 {
 	FrameBuffer* Framebuffer;
-	Font* Font;
+	PSF1Font* Font;
 	vptr MemoryMap;
 	uint64 MapSize;
 	uint64 MapDescriptorSize;

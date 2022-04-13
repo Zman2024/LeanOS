@@ -15,12 +15,11 @@ namespace Kernel
 		Console = PrimitiveConsole(bootInfo.Framebuffer, bootInfo.Font);
 		Console.Clear();
 
-		Console.WriteLine("LeanOS\nI LOVE LEAN!!!");
-
+		Console.WriteLine("LeanOS \nI LOVE LEAN!!!");
 		InitializeKernel(bootInfo);
 
 		// once we have irqs this will just be "while (true) hlt;" 
-		// but we dont have that right now so we drinkin lean
+		// but we dont have that right now so we drinkin' lean
 		drinklean;
 	}
 }
