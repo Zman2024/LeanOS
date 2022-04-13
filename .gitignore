@@ -67,6 +67,10 @@ __pycache__/
 # ================================================== User defined ==================================================
 Bootloader/x86_64/
 Bootloader/x86_64/*
+Kernel/src/obj/
 *.o
 *.img
 *.elf
+
+.vscode
+.ccls
