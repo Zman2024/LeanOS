@@ -68,6 +68,23 @@ const char* tostr(int64 value, bool sign)
 	return strBuffer;
 }
 
+int64 toint(const char* str)
+{
+	bool negative = (str[0] == '-');
+	if (negative) str++;
+
+	uint64 value = 0;
+	nint indexer = 0;
+	while (str[indexer] != 0)
+	{
+		value *= 10;
+		value += (str[indexer++] - '0');
+	}
+
+	if (negative) return -value;
+	return value;
+}
+
 const char* tohex(uint64 value)
 {
 	char* str = hexBuffer + 2;

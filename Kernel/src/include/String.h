@@ -15,6 +15,8 @@ void reverse(char* str);
 // converts a signed / unsigned number into a string
 const char* tostr(int64 value, bool sign = true);
 
+int64 toint(const char* str);
+
 // converts an unsigned number into an hstring
 const char* tohex(uint64 value);
 
