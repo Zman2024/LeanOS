@@ -2,9 +2,10 @@
 
 namespace Kernel
 {
-	extern "C" void KernelMain(BootInfo bootInfo)
+	global void KernelMain(BootInfo bootInfo)
 	{
 		InitializeKernel(bootInfo);
-		while (1) ;
+
+		OS_HLT;
 	}
 }

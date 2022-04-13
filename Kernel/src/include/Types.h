@@ -44,22 +44,6 @@ typedef uint32 Color32;
 constexpr auto PAGE_SIZE = 0x1000; // The size of a physical page
 
 // Macros //
-#ifdef VISUAL_STUDIO_EDITOR
-#define attribute(x) 
-#define forceinline
-#define asm(x)
-#define cli
-#define sti
-#define hlt
-#define pause
-#define intcall(x)
-#define OS_HLT
-#define halt
-#define cpuid(level, a, b, c, d)
-#define spin(x)
-#define global extern "C"
-#define fast
-#else
 #define attribute __attribute__
 #define forceinline inline __attribute__((always_inline))
 
@@ -70,16 +54,8 @@ constexpr auto PAGE_SIZE = 0x1000; // The size of a physical page
 #define sti asm ("sti");
 #define hlt asm ("hlt");
 #define pause asm ("pause");
-#define intcall(x) { asm ("int %0" : : "byte"((byte)x)); }
-#define OS_HLT asm ("cli"); while(true) asm ("hlt");
-#define halt asm ("cli"); while(true) asm ("hlt");
-#define cpuid(level, a, b, c, d)			\
-  asm ("cpuid\n\t"					\
-	   : "=a" (a), "=b" (b), "=c" (c), "=d" (d)	\
-	   : "0" (level)	\
-	   : "memory")
+#define os_stop asm ("cli"); while(true) asm ("hlt");
 
 // #define cpuid(code, eax, ebx, ecx, edx) asm ("cpuid" : "=eax"(eax), "=ebx"(ebx), "=ecx"(ecx), "=edx"(edx) : "eax"(code) : "memory")
 #define spin(x) for(volatile uint64 y = 0; x > y; y++)
-#endif // VISUAL_STUDIO_EDITOR
 #endif // H_Types
