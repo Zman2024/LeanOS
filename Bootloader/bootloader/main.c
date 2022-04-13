@@ -18,5 +18,5 @@ EFI_STATUS efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
 
 	while ((Status = ST->ConIn->ReadKeyStroke(ST->ConIn, &Key)) == EFI_NOT_READY) ; // Poll For Key Input
 	
-	// return Status; // Exit the UEFI application
+	return Status; // Exit the UEFI application
 }
