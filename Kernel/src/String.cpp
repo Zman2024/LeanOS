@@ -120,23 +120,30 @@ const char* tohex(uint64 value)
 #pragma region const char* format(char* fstring, i64...)
 forceinline void finsert(nint value, char pformat, nint& bufferIndexer)
 {
+	// the string that we are inserting into the fbuffer
 	char* str = nullptr;
+
+	// Convert value to string based on requested format
 	switch (pformat)
 	{
+		// Basic signed integer
 		case 0x00:
 			str = (char*)tostr(value, true);
 			break;
 
+		// Hex string
 		case 'x':
 		case 'X':
 			str = (char*)tohex(value);
 			break;
 
+		// Unsigned integer
 		case 'u':
 		case 'U':
 			str = (char*)tostr(value, false);
 			break;
 
+		// String pointer
 		case 's':
 		case 'S':
 			str = (char*)value;
@@ -155,29 +162,36 @@ forceinline void finsert(nint value, char pformat, nint& bufferIndexer)
 	bufferIndexer += len;
 }
 
+// I FUCKING LOVE LEEEEEEEAAAAAN!!!
 const char* format(const char* fstring, nint p0, nint p1, nint p2, nint p3, nint p4, nint p5, nint p6, nint p7, nint p8, nint p9)
 {
+	// the length of the base fstring
 	nint fstrlen = strlen(fstring);
+
+	// the current index in the fstring
 	nint fstrIndexer = 0;
+
+	// the current index in the buffer
 	nint bufferIndexer = 0;
 
+	// a lookup table for the parameters
 	nint lookup[10] = {
 		p0, p1, p2,
 		p3, p4, p5,
 		p6, p7, p8,
-		p9
+			p9
 	};
 
 	while (fstrIndexer != fstrlen)
 	{
 		switch (fstring[fstrIndexer])
 		{
-
 			case '%':
 			{
 				char nextChar = fstring[fstrIndexer + 1];
 				switch (nextChar)
 				{
+					// Basic signed integer
 					case '0':
 					case '1':
 					case '2':
@@ -192,6 +206,7 @@ const char* format(const char* fstring, nint p0, nint p1, nint p2, nint p3, nint
 						fstrIndexer += 2;
 						break;
 
+					// Unsigned hex string
 					case 'x':
 					case 'X':
 					{
@@ -220,6 +235,7 @@ const char* format(const char* fstring, nint p0, nint p1, nint p2, nint p3, nint
 					}
 					break;
 
+					// Unsigned integer
 					case 'u':
 					case 'U':
 					{
@@ -248,6 +264,7 @@ const char* format(const char* fstring, nint p0, nint p1, nint p2, nint p3, nint
 					}
 					break;
 
+					// String
 					case 's':
 					case 'S':
 					{
