@@ -6,11 +6,21 @@ LDS = kernel.ld
 GC = gcc
 LD = ld
 ASMC = nasm
+QEMU = qemu-system-x86_64
 
 SRCDIR := src
 INCLUDEDIR := src/include
 OBJDIR := obj
 BUILDDIR = bin
+
+QEMUFLAGS = -device qemu-xhci -machine q35 -rtc base=localtime
+QEMUFLAGS += -drive file=$(BUILDDIR)/$(OSNAME).img
+QEMUFLAGS += -m 8G
+QEMUFLAGS += -cpu qemu64,+sse2,+sse3,+sse4.1,+sse4.2,+rdrand,+xsave
+QEMUFLAGS += -smp cores=4
+QEMUFLAGS += -drive if=pflash,format=raw,unit=0,file=$(OVMFDIR)/OVMF_CODE-pure-efi.fd,readonly=on
+QEMUFLAGS += -drive if=pflash,format=raw,unit=1,file=$(OVMFDIR)/OVMF_VARS-pure-efi.fd
+QEMUFLAGS += -net none -vga virtio -smp 4 -soundhw pcspk 
 
 CXXFLAGS = -g -ffreestanding -fshort-wchar -pipe -mno-red-zone -O0 -fno-exceptions -fno-rtti -masm=intel -fpermissive -w -I$(INCLUDEDIR) -c 
 ASMFLAGS = -g -f elf64 
@@ -82,3 +92,6 @@ buildimg:
 	cp zap-light16.psf $(BUILDDIR)/dsk
 
 	@ echo ==================== Done ====================
+
+run:
+	@ $(QEMU) $(QEMUFLAGS)

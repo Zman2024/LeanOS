@@ -2,13 +2,15 @@
 
 namespace Kernel
 {
-	void ClearBSS(BootInfo& bootInfo)
+	void ClearBSS()
 	{
-
+		nint bssLength = nint(&_BssDataEnd) - nint(&_BssDataStart);
+		memset64(&_BssDataStart, 0x00, bssLength);
 	}
 
 	global void KernelMain(BootInfo bootInfo)
 	{
+		ClearBSS();
 
 		Console = PrimitiveConsole(bootInfo.Framebuffer, bootInfo.Font);
 		Console.Clear();

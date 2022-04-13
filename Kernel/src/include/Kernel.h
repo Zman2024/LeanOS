@@ -5,6 +5,7 @@
 #include <Structs.h>
 #include <PrimitiveConsole.h>
 #include <Globals.h>
+#include <Externs.h>
 
 namespace Kernel
 {
