@@ -5,6 +5,7 @@
 # Visual studio bullshit
 /.vs
 .vs
+CppProperties.json
 
 # Build results
 [Dd]ebug/

@@ -3,10 +3,12 @@
 #define H_Kernel
 #include <Types.h>
 #include <Structs.h>
+#include <PrimitiveConsole.h>
+#include <Globals.h>
 
 namespace Kernel
 {
-	void InitializeKernel(BootInfo& bootInfo);
+	void InitializeKernel(const BootInfo& bootInfo);
 }
 
 #endif

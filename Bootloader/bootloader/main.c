@@ -1,7 +1,7 @@
 #include <efi.h>
 #include <efilib.h>
 #include <elf.h>
-#include "Structs.h"
+#include "BasicStructs.h"
 #include "Funcs.h"
 
 
@@ -102,13 +102,13 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE* SystemTable)
 
 	Framebuffer* newBuffer = InitializeGOP();
 
-	Print(L"Base: 0x%x\n\rSize: 0x%x\n\rWidth: %d\n\rHeight: %d\n\rPixelsPerScanline: %d\n\r",
+	Print(L"Base: 0x%x\n\rSize: 0x%x\n\rWidth: %d\n\rHeight: %d\n\rBytesPerScanline: %d\n\r",
 
 		newBuffer->BaseAddress,
 		newBuffer->BufferSize,
 		newBuffer->Width,
 		newBuffer->Height,
-		newBuffer->PixelsPerScanline);
+		newBuffer->BytesPerScanline);
 
 	EFI_MEMORY_DESCRIPTOR* Map = NULL;
 	uint64_t MapSize, MapKey, DescriptorSize;

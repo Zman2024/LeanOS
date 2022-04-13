@@ -155,7 +155,7 @@ Framebuffer* InitializeGOP()
 	fb.BufferSize = gop->Mode->FrameBufferSize;
 	fb.Width = gop->Mode->Info->HorizontalResolution;
 	fb.Height = gop->Mode->Info->VerticalResolution;
-	fb.PixelsPerScanline = gop->Mode->Info->PixelsPerScanLine;
+	fb.BytesPerScanline = gop->Mode->Info->PixelsPerScanLine << 2;
 
 	return &fb;
 }

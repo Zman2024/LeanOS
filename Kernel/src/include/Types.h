@@ -2,8 +2,10 @@
 #ifndef H_Types
 #define H_Types
 #include <stddef.h>
-
-// Typedefs //
+/*
+	Contains the primitive types and macros used 
+	throughout the kernel
+*/
 
 typedef size_t nint; // Architecture native integer (native int)
 typedef void* vptr;
@@ -36,7 +38,7 @@ typedef unsigned long long u64;
 
 typedef float fp32;
 typedef double fp64;
-typedef long double fp128; // sizeof(fp128) gives me 16 so... i guess?
+typedef long double fp128; // sizeof(long double) gives me 16 so... i guess?
 
 typedef uint32 Color32;
 
@@ -44,8 +46,20 @@ typedef uint32 Color32;
 constexpr auto PAGE_SIZE = 0x1000; // The size of a physical page
 
 // Macros //
+#ifdef VISUAL_STUDIO_EDITOR
+#define attribute 
+#define forceinline 
+#define global extern "C"
+#define asm  
+#define cli 
+#define sti 
+#define hlt 
+#define pause 
+#define drinklean 
+#define spin(x)
+#else
 #define attribute __attribute__
-#define forceinline inline __attribute__((always_inline))
+#define forceinline __attribute__((always_inline)) inline
 
 #define global extern "C"
 
@@ -54,8 +68,9 @@ constexpr auto PAGE_SIZE = 0x1000; // The size of a physical page
 #define sti asm ("sti");
 #define hlt asm ("hlt");
 #define pause asm ("pause");
-#define os_stop asm ("cli"); while(true) asm ("hlt");
+#define drinklean asm ("cli"); while(true) asm ("hlt");
 
 // #define cpuid(code, eax, ebx, ecx, edx) asm ("cpuid" : "=eax"(eax), "=ebx"(ebx), "=ecx"(ecx), "=edx"(edx) : "eax"(code) : "memory")
 #define spin(x) for(volatile uint64 y = 0; x > y; y++)
+#endif // VISUAL_STUDIO_EDITOR
 #endif // H_Types

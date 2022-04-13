@@ -1,5 +1,5 @@
-#ifndef H_Structs
-#define H_Structs
+#ifndef H_BasicStructs
+#define H_BasicStructs
 
 #include <efi.h>
 #include <efilib.h>
@@ -8,7 +8,7 @@
 typedef unsigned char byte;
 typedef unsigned long long size_t;
 
-#define uint unsigned int
+typedef unsigned int uint;
 
 #define PSF_MAGIC0 0x36
 #define PSF_MAGIC1 0x04
@@ -33,7 +33,7 @@ typedef struct Framebuffer
 	size_t BufferSize;
 	unsigned int Width;
 	unsigned int Height;
-	unsigned int PixelsPerScanline;
+	unsigned int BytesPerScanline;
 
 } Framebuffer;
 
