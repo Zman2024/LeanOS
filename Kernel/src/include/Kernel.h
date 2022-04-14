@@ -7,6 +7,10 @@
 #include <Globals.h>
 #include <Memory.h>
 #include <String.h>
+#include <Interrupts/GTD.h>
+#include <Interrupts/IDT.h>
+#include <Interrupts/Interrupts.h>
+
 
 namespace Kernel
 {

@@ -47,7 +47,7 @@ constexpr auto PAGE_SIZE = 0x1000; // The size of a physical page
 
 // Macros //
 #ifdef VISUAL_STUDIO_EDITOR
-#define attribute 
+#define attribute(x)
 #define forceinline 
 #define global extern "C"
 #define asm  

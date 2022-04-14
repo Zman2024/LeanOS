@@ -15,7 +15,42 @@ namespace Kernel
 		InitializeIRQ();
     }
 
-	void InitializeIRQ(bool forceUsePic)
+	void InitializeGDT()
+	{
+		kprintln("Loading Global Descriptor Table (GDT)...");
+		// Create and load GDT
+		GDTDescriptor desc{};
+		desc.Size = sizeof(GDT) - 1;
+		desc.Offset = (u64)&GlobalGDT;
+		Interrupts::LoadGDT(&desc);
+	}
+
+	void InitializeExceptions()
+	{
+		using namespace Interrupts;
+
+		kprintln("Loading Interrupt Vector Table (IDTR)...");
+
+		// Initialize IDTR
+		GlobalIDTR.Limit = 0x1FF;
+		GlobalIDTR.Offset = (nint)GlobalIDTROffset;
+		memset64(GlobalIDTROffset, 0x00, PAGE_SIZE);
+
+		// Load stubs into IDTR
+		InitializeStubs();
+
+		// Load the interrupt table
+		LoadGIDT();
+
+		kprintln("Registering Fault / Interrupt Handlers...");
+
+		SetInterruptHandler((vptr)hDivideByZero, ISR::DivideByZero);
+
+
+
+	}
+
+	void InitializePaging(const BootInfo & bootInfo)
 	{
 	}
 
@@ -23,15 +58,7 @@ namespace Kernel
 	{
 	}
 
-	void InitializePaging(const BootInfo & bootInfo)
-	{
-	}
-
-	void InitializeExceptions()
-	{
-	}
-
-	void InitializeGDT()
+	void InitializeIRQ(bool forceUsePic)
 	{
 	}
 
