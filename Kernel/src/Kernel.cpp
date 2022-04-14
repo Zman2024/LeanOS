@@ -44,8 +44,28 @@ namespace Kernel
 
 		kprintln("Registering Fault / Interrupt Handlers...");
 
-		SetInterruptHandler((vptr)hDivideByZero, ISR::DivideByZero);
+		SetInterruptHandler((vptr)hDivideByZeroFault, ISR::DivideByZero);
+		SetInterruptHandler((vptr)hDebug, ISR::Debug);
+		SetInterruptHandler((vptr)hNonMaskableFault, ISR::NonMaskable);
+		SetInterruptHandler((vptr)hBreakpointFault, ISR::Breakpoint);
+		SetInterruptHandler((vptr)hOverflowTrap, ISR::OverflowTrap);
+		SetInterruptHandler((vptr)hBoundRangeFault, ISR::BoundRangeExceeded);
+		SetInterruptHandler((vptr)hInvalidOpcodeFault, ISR::InvalideOpcode);
+		SetInterruptHandler((vptr)hCoprocessorNAFault, ISR::CoprocessorNA);
 		SetInterruptHandler((vptr)hDoubleFault, ISR::DoubleFault);
+		SetInterruptHandler((vptr)hCoprocessorSegmentOverrunFault, ISR::CoprocessorSegmentOverrun);
+		SetInterruptHandler((vptr)hInvalidStateSegmentFault, ISR::InvalidStateSegment);
+		SetInterruptHandler((vptr)hSegmentMissingFault, ISR::SegmentMissing);
+		SetInterruptHandler((vptr)hStackFault, ISR::StackException);
+		SetInterruptHandler((vptr)hGeneralProtectionFault, ISR::GeneralProtection);
+		SetInterruptHandler((vptr)hPageFault, ISR::PageFault);
+		SetInterruptHandler((vptr)hCoprocessorFault, ISR::CoprocessorError);
+		SetInterruptHandler((vptr)hAlignmentCheck, ISR::AlignmentCheck);
+		SetInterruptHandler((vptr)hMachineCheck, ISR::MachineCheck);
+		SetInterruptHandler((vptr)hSIMDFault, ISR::SIMDException);
+		SetInterruptHandler((vptr)hKeyboardInt, ISR::Keyboard);
+		SetInterruptHandler((vptr)hPitTick, ISR::PIT);
+		SetInterruptHandler((vptr)hRtcTick, ISR::RTC);
 
 		asm("int 0x08");
 
