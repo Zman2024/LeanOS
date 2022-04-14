@@ -20,7 +20,13 @@ int64 toint(const char* str);
 // converts an unsigned number into an hstring
 const char* tohex(uint64 value);
 
-// oh god oh hell
+// how to use:
+//   % is the format escape character
+//   %[paramnum] prints the parameter as a signed 64 bit integer
+//   %x[paramnum] prints the parameter as a hex string
+//   %u[paramnum] prints the parameter as an unsigned 64 bit integer
+//   %s[paramnum] prints the parameter as a string
+//   drink lean
 const char* format(const char* fstring, nint p0 = 0, nint p1 = 0, nint p2 = 0, nint p3 = 0, nint p4 = 0, nint p5 = 0, 
 					nint p6 = 0, nint p7 = 0, nint p8 = 0, nint p9 = 0);
 

@@ -26,7 +26,7 @@ global memset8
 global strlen
 global memcpy
 
-	; region === memset ===
+	; region ====== memset ======
 
 ; p0 / rdi: void* destination
 ; p1 / rsi: uint64 value
@@ -117,7 +117,6 @@ ret
 ; p1 / rsi: const ptr src
 ; p2 / rdx: numBytes
 memcpy:
-	push p1
 	mov rcx, p2		; 
 	shr rcx, 3		; divide by 8
 	and p2, 0b111	; remainder
@@ -126,5 +125,4 @@ memcpy:
 
 	mov rcx, p2		; move the remainder bytes
 	rep movsb
-	pop p1
 ret
