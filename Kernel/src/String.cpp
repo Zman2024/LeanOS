@@ -104,7 +104,7 @@ const char* tohex(uint64 value)
 	// add an extra 0 at the beginning if it's less than 0x10
 	if (value < 0x10)
 	{
-		str[2] = '0';
+		hexBuffer[2] = '0';
 		str++;
 	}
 

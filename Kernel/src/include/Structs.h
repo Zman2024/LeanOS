@@ -92,6 +92,9 @@ namespace Color
 		Purple = 0xFFFF00FF,
 		Lean = Purple,
 
+		DarkPurple = 0xFF600080,
+		BetterLean = DarkPurple,
+
 		DarkGray = 0xFF101010,
 		VeryDarkGray = 0xFF080808,
 		DarkRed = 0xFF900000,

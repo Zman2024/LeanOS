@@ -45,8 +45,9 @@ namespace Kernel
 		kprintln("Registering Fault / Interrupt Handlers...");
 
 		SetInterruptHandler((vptr)hDivideByZero, ISR::DivideByZero);
+		SetInterruptHandler((vptr)hDoubleFault, ISR::DoubleFault);
 
-
+		asm("int 0x08");
 
 	}
 

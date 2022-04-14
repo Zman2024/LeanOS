@@ -6,6 +6,13 @@ namespace Interrupts
 {
 	global RegisterState* GetRegisterDump();
 
+	forceinline void TooMuchLean()
+	{
+		Console.SetBackgroundColor(Color::BetterLean);
+		Console.SetForegroundColor(Color::White);
+		Console.Clear();
+	}
+
 	void InitializeStubs()
 	{
 		IDTDescEntry* entry = (IDTDescEntry*)(GlobalIDTR.Offset);
@@ -31,8 +38,17 @@ namespace Interrupts
 		warn("Divided by zero!");
 	}
 
+	void hDoubleFault(nint intr, nint code)
+	{
+		TooMuchLean();
+		kprintf("DOUBLE FAULT! LEAN WAS TOO DRIPPY!!!");
+		drinklean;
+	}
+
 	void hStub(nint interruptNum)
 	{
-		warn("An interrupt without a handler was called (int %x0)", interruptNum);
+		TooMuchLean();
+		kprintln("An interrupt without a handler was called (int %x0)", interruptNum);
+		drinklean;
 	}
 }

@@ -134,7 +134,29 @@ namespace Interrupts
 	void InitializeStubs();
 	void SetInterruptHandler(vptr handler, byte interrupt, IdtType type = IdtType::InterruptGate);
 
-	void hDivideByZero();
+	void hDivideByZeroFault();
+	void hDebug();
+	void hNonMaskableFault();
+	void hBreakpointFault();
+	void hOverflowTrap();
+	void hBoundRangeFault();
+	void hInvalidOpcodeFault();
+	void hCoprocessorNAFault();
+	void hDoubleFault(nint intr, nint code);
+	void hCoprocessorSegmentOverrunFault();
+	void hInvalidStateSegmentFault(nint intr, nint code);
+	void hSegmentMissingFault(nint intr, nint code);
+	void hStackFault(nint intr, nint code);
+	void hGeneralProtectionFault(nint intr, nint code);
+	void hPageFault(nint intr, nint code);
+	void hCoprocessorFault();
+	void hAlignmentCheck(nint intr, nint code);
+	void hMachineCheck();
+	void hSIMDFault();
+	void hKeyboardInt();
+	void hPitTick();
+	void hRtcTick();
+
 	void hStub(nint interruptNum);
 }
 
